@@ -5,7 +5,7 @@ const useDropDown = (label, defaultState, options) => {
     const id = `use-drop-down-${label.replace(' ', '').toLowerCase()}`
     const DropDown = () => (
         <label htmlFor={id}>
-        animal
+        {label}
         <select
           id={id}
           value={state}
