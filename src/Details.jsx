@@ -23,7 +23,6 @@ class Details extends React.Component {
 
   
   render () {
-    console.log('ggg')
     if (this.state.loading) {
       return <h1>loading...</h1>
     }
