@@ -1,23 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { render } from 'react-dom'
 import { Router, Link } from '@reach/router'
 
 import SearchParams from './SearchParams.jsx'
 import Details from './Details.jsx'
+import ThemeContext from './ThemeContext'
 
 const App = () => {
+  const themeHook = useState('peru')
+  
   return (
-    <div>
-      <header>
-        <Link to='/'>
-          Adopt me
-        </Link>
-      </header>
-      <Router>
-        <SearchParams path='/'/>
-        <Details path='/details/:id'/>
-      </Router>
-    </div>
+    <ThemeContext.Provider value={themeHook}>
+      <div>
+        <header>
+          <Link to='/'>
+            Adopt me
+          </Link>
+        </header>
+        <Router>
+          <SearchParams path='/'/>
+          <Details path='/details/:id'/>
+        </Router>
+      </div>
+    </ThemeContext.Provider>
   )
 }
 
