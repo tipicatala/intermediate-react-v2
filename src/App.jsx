@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, lazy, Suspense } from 'react'
 import { render } from 'react-dom'
-import { Router, Link } from '@reach/router'
+import { Router } from '@reach/router'
 
-import SearchParams from './SearchParams.jsx'
-import Details from './Details.jsx'
 import ThemeContext from './ThemeContext'
+import NavBar from './NavBar.jsx'
+
+const Details = lazy(() => import('./Details'))
+const SearchParams = lazy(() => import('./SearchParams'))
 
 const App = () => {
   const themeHook = useState('peru')
@@ -12,15 +14,13 @@ const App = () => {
   return (
     <ThemeContext.Provider value={themeHook}>
       <div>
-        <header>
-          <Link to='/'>
-            Adopt me
-          </Link>
-        </header>
+        <NavBar/>
+        <Suspense fallback={<h1>loading route...</h1>}>
         <Router>
           <SearchParams path='/'/>
           <Details path='/details/:id'/>
         </Router>
+        </Suspense>
       </div>
     </ThemeContext.Provider>
   )
