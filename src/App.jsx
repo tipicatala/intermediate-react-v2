@@ -1,28 +1,25 @@
-import React, { useState, lazy, Suspense } from 'react'
-import { Router } from '@reach/router'
-
-import ThemeContext from './ThemeContext'
-import NavBar from './NavBar.jsx'
-
-const Details = lazy(() => import('./Details'))
-const SearchParams = lazy(() => import('./SearchParams'))
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import { Router, Link } from "@reach/router";
+import Details from "./Details";
+import SearchParams from "./SearchParams";
+import ThemeContext from "./ThemeContext";
 
 const App = () => {
-  const themeHook = useState('peru')
-  
+  const theme = useState("darkblue");
   return (
-    <ThemeContext.Provider value={themeHook}>
+    <ThemeContext.Provider value={theme}>
       <div>
-        <NavBar/>
-        <Suspense fallback={<h1>loading route...</h1>}>
+        <header>
+          <Link to="/">Adopt Me!</Link>
+        </header>
         <Router>
-          <SearchParams path='/'/>
-          <Details path='/details/:id'/>
+          <SearchParams path="/" />
+          <Details path="/details/:id" />
         </Router>
-        </Suspense>
       </div>
     </ThemeContext.Provider>
-  )
-}
+  );
+};
 
 export default App

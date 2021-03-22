@@ -5,12 +5,13 @@
     "main": "index.js",
     "scripts": {
         "build": "parcel build --public-url ./dist/ src/index.html",
+        "clear-build-cache": "rm -rf .cache/ dist/",
         "dev": "parcel src/index.html",
-        "dev:mock": "cross-env PET_MOCK=mock npm run dev",
-        "format": "prettier \"src/**/*.{js,html}\" --write",
-        "start": "npm run build && babel-node server/index.js",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "lint": "eslint \"src/**/*.{js, jsx}\" --quiet"
+        "dev:mock": "cross-env PET_MOCK=mock parcel src/index.html",
+        "format": "prettier --write \"src/**/*.{js,jsx}\"",
+        "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+        "start": "npm -s run build && babel-node server/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
         "type": "git",
@@ -51,7 +52,8 @@
         "express": "^4.17.1",
         "moment": "^2.29.1",
         "react": "^17.0.1",
-        "react-dom": "^16.14.0"
+        "react-dom": "^16.14.0",
+        "react-ssr-prepass": "^1.4.0"
     },
     "browserslist": [
         "last 2 Chrome versions"
