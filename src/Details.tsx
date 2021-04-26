@@ -6,7 +6,7 @@ import ErrorBoundary from './ErrorBoundary.jsx'
 import { navigate, RouteComponentProps } from '@reach/router'
 import ThemeContext from './ThemeContext'
 
-import Modal from './Modal.js'
+import Modal from './Modal'
 class Details extends React.Component<RouteComponentProps<{id: string }>> {
   public state = {
     loading: true,
