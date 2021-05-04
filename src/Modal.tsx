@@ -20,4 +20,4 @@ const Modal: FunctionComponent = ({ children }) => {
   return createPortal(<div>{children}</div>, elRef.current)
 }
 
-export default Modal
+export default Modal  

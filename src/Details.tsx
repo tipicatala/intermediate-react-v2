@@ -4,7 +4,7 @@ import pet, { Photo } from '@frontendmasters/pet'
 import Carousel from './Carousel.jsx'
 import ErrorBoundary from './ErrorBoundary.jsx'
 import { navigate, RouteComponentProps } from '@reach/router'
-import ThemeContext from './ThemeContext'
+// import ThemeContext from './ThemeContext'
 
 import Modal from './Modal'
 class Details extends React.Component<RouteComponentProps<{id: string }>> {
@@ -60,7 +60,7 @@ class Details extends React.Component<RouteComponentProps<{id: string }>> {
           <h2>
             {`${animal} -${breed} - ${location}`}
           </h2>
-          <ThemeContext.Consumer>
+          {/* <ThemeContext.Consumer>
             {([theme]) => (
               <button
                 onClick={this.toggleModal}
@@ -71,7 +71,7 @@ class Details extends React.Component<RouteComponentProps<{id: string }>> {
                 Adopt {name}
               </button>
             )}
-          </ThemeContext.Consumer>
+          </ThemeContext.Consumer> */}
           <p>{description}</p>
           {
             showModal ? (

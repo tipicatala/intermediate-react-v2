@@ -1,20 +1,23 @@
 import React, { useState, useEffect, useContext, FunctionComponent } from 'react'
 import pet, { ANIMALS, Animal } from '@frontendmasters/pet'
+import { connect } from 'react-redux'
 
 import useDropDown from './useDropDown'
-import ThemeContext from './ThemeContext'
-import { RouteComponentProps } from '@reach/router'
-
 import Results from './Results'
+import changeTheme from './actionCreators/changeTheme'
+import changeLocation from './actionCreators/changeLocation'
 
-const SearchParams: FunctionComponent<RouteComponentProps> = () => {
-  const [location, setLocation] = useState("Seattle, WA")
-  const [breeds, setBreeds] = useState([] as string[])
+const SearchParams = ({
+  location,
+  theme,
+  setLocation,
+  setTheme,
+}) => {
+  console.log(location)
+  const [breeds, setBreeds] = useState([])
   const [animal, AnimalDropDown] = useDropDown('Animal','dog', ANIMALS)
   const [breed, BreedDropDown, setBreed] = useDropDown('Breed','', breeds)
-  const [pets, setPets] = useState([] as Animal[])
-
-  const [theme, setTheme] = useContext(ThemeContext)
+  const [pets, setPets] = useState([])
 
   const requestPets = async () => {
     const { animals } = await pet.animals({
@@ -73,4 +76,14 @@ const SearchParams: FunctionComponent<RouteComponentProps> = () => {
   )
 }
 
-export default SearchParams
+const mapStateToProps = ({ theme, location }) => ({
+  theme,
+  location,
+})
+
+const mapDispatchToProps = dispatch => ({
+  setLocation: location => dispatch(changeLocation(location)),
+  setTheme: theme => dispatch(changeTheme(theme)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchParams)
